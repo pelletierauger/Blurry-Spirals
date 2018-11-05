@@ -1,0 +1,22 @@
+{
+  "name": "blurry-spirals",
+  "version": "0.0.1",
+  "description": "Simple GLSL shaders with p5.js",
+  "main": "sketch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pelletierauger/Blurry-Spirals.git"
+  },
+  "author": "Guillaume Pelletier-Auger",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/pelletierauger/Blurry-Spirals/issues"
+  },
+  "homepage": "https://github.com/pelletierauger/Blurry-Spirals#readme",
+  "dependencies": {
+    "osc": "2.2.4"
+  }
+}
