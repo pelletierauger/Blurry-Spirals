@@ -12,8 +12,10 @@ float plot(vec2 s, float p) {
 }
 
 float circ(float speed, float size, float vx, float vy, float dist) {
-  float x = cos(time * speed) * dist * 0.012 - 0.425;
-  float y = sin(time * speed) * dist * 0.012 - 0.25;
+  // float x = cos(time * speed) * dist * 0.06 - 0.425;
+  // float y = sin(time * speed) * dist * 0.06 - 0.25;
+  float x = cos(time * speed) * dist * abs(sin(time * 0.01) * 1.0) - 0.425;
+  float y = sin(time * speed) * dist * abs(sin(time * 0.01) * 1.0) - 0.25;
   vec2 v = vec2(vx + x, vy + y);
   float d = 1.0 / length(v * size);
   return d;
@@ -45,7 +47,18 @@ void main() {
     float rando = rand(vec2(uv.x, uv.y));
     // float c = 0.0;
     // gl_FragColor = vec4(1.0 - c * 0.5, 1.0 - c * 0.05, 0.5 - c, 1.0);
-    gl_FragColor = vec4(vec3(1.0 - c * 0.05 + (rando * 0.1)), 1.0);
+    // gl_FragColor = vec4(vec3(1.0 - c * 0.05 + (rando * 0.1)), 1.0);
+
+    // float pix = 1.0 - c * 0.05 + (rando * 0.1);
+    // float pix2 = 1.0 - c * 0.025 + (rando * 0.1);
+    // gl_FragColor = vec4(pix, 0.25 - pix2, 0.75 - pix * 0.5, 1.0);
+
+    // warm blue, purple and cyan
+    float pix = 1.0 - c * 0.05 + (rando * 0.1);
+    float pix2 = 1.0 - c * 0.025 + (rando * 0.1);
+    gl_FragColor = vec4(pix, 0.25 - pix2, 0.75 - pix * 0.5, 1.0);
+    // gl_FragColor = vec4(0.475 - pix * 0.125, 0.125 - pix2, pix2 - 0.5, 1.0);
+
     // gl_FragColor = vec4(vec3(d) + vec3(d2), 1.0);
 
 }
