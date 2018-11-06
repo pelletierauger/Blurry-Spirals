@@ -62,7 +62,7 @@ void main() {
     // warm blue, purple and cyan
     float pix = 1.0 - c * 0.05 + (rando * 0.1);
     float pix2 = 1.0 - c * 0.045 + (rando * 0.1);
-    gl_FragColor = vec4(pix, 0.25 - pix2, 0.75 - pix * 0.5, 1.0);
+    gl_FragColor = vec4(pix, 0.25 - pix2, (0.75 - pix * 0.5) * 0.55, 1.0);
     // gl_FragColor = vec4(0.475 - pix * 0.125, 0.125 - pix2, pix2 - 0.5, 1.0);
 
     // gl_FragColor = vec4(vec3(d) + vec3(d2), 1.0);
