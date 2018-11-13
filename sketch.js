@@ -5,7 +5,7 @@ let texcoordShader;
 
 function preload() {
     // load the shader
-    texcoordShader = loadShader('texcoord.vert', 'texcoord.frag');
+    texcoordShader = loadShader('texcoord.vert', 'functions.frag');
 }
 
 function setup() {
