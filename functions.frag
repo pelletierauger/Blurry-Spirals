@@ -59,7 +59,8 @@ void main() {
     // vec2 uv = fragCoord/iResolution.xy;
 
 
-    vec2 uv = gl_FragCoord.xy / vec2(2560, 1600);
+    // vec2 uv = gl_FragCoord.xy / vec2(2560, 1600);
+    vec2 uv = gl_FragCoord.xy / vec2(1600, 1600);
 
     // uv.x = uv.x * 2. * (2560. / 1600.);
     // uv.y = uv.y * 2.;
@@ -67,8 +68,8 @@ void main() {
     // uv.y = uv.y * 2.;
     uv.x = uv.x - 0.5;
     uv.y = uv.y - 0.5;
-    vec2 st = vec2(uv.x+(time*.001), uv.y);
-    st = uv;
+    // vec2 st = vec2(uv.x+(time*.001), uv.y);
+    vec2 st = uv;
     
     // Initialize the color vector
     vec3 col = vec3(0.0);
@@ -92,11 +93,22 @@ void main() {
     // float pct = plot(st * (abs(sin(time * 0.05)) * 500.), y * 10., 1335.);
 
 
+    // Oeil de boeuf
     // float t = time * 0.01;
     // float y = sin(st.x * (t + 300.) * 0.1) * sin(st.y * 100.0 * t * 0.1);
     // st.y = sin((st.x * st.y * 0.075) * t * 100.) * 4.;
     // // float pct = plot(st, y * st.y);
     // float pct = plot(st * (abs(sin(time * 0.05)) * 500.), y * 1000., 335.);
+
+
+    float t = time * 0.01;
+    float y = sin(st.x * (t + 300.) * 0.1) * sin(st.y * 100.0 * t * 0.1);
+    st.y = sin((st.x * st.y * 0.075) * t * 100.) * 4.;
+    // float pct = plot(st, y * st.y);
+    float pct = plot(st * (abs(sin(time * 0.05)) * 500.), y * 1000., 335.);
+
+
+
 
 
 
@@ -174,6 +186,7 @@ void main() {
     // float pct = plot(st * (tan(sin(st.x * t * 5.)) * 500.), y * 1000., 1735.);
 
 
+    // Interesting white vertical stripes with waves in them
     // float t = time * 0.01;
     // float y = tan(st.x * (t + 300.) * 0.1);
     // y = y * tan(st.x * (t + 300.) * 0.1) * tan(st.x * (t + 300.) * 0.1);
@@ -193,6 +206,7 @@ void main() {
 
 
 
+    // Mysterious bulbs
     // float t = time * 0.01;
     // float y = tan(st.x * (t + 3.) * 0.1);
     // y = y * tan(st.x * (t + 300.) * 0.1) * tan(st.x * (t + 300.) * 0.1);
@@ -204,6 +218,7 @@ void main() {
     // pct = 1. - pct;
 
 
+    // Mysterious bulbs with a grey background
     // float t = time * 0.01;
     // float y = tan(st.x * (t + 3.) * 0.1);
     // y = y * tan(st.x * (t + 300.) * 0.1) * tan(st.x * (t + 300.) * 0.1);
@@ -215,6 +230,7 @@ void main() {
     // pct = 1. - (pct * 0.5);
 
 
+    // Zoom out on a glowing, metallic logo
     // float t = time * 0.1;
     // float y = tan(st.y * st.x * (t * 300.) * 0.01);
     // y = y + tan(st.y * st.x * (t * 300.) * 0.01);
@@ -235,6 +251,7 @@ void main() {
     // float pct = plot(st * (abs(sin(time * 0.05)) * 500.), y * 1000., 350.);
 
 
+    // Ripples in a pond
     // float t = time * 0.01;
     // float y = sin(st.y * (t + 3.) * 0.1);
     // y = y * sin(st.y * (t + 300.) * 0.1) * sin(st.x * (t + 300.) * 0.1);
@@ -283,6 +300,15 @@ void main() {
     // // pct = 1. - (pct * 0.5);
 
 
+    // Afternoon on the chair
+    // st = st * 1.05;
+    // float t = time * 0.1;
+    // float y = sin(st.y * (t + 30.) * 0.1);
+    // y = y * sin(st.y * (t + 300.) * 0.1) * sin(st.x * (t + 300.) * 0.1);
+    // st.y = tan(st.x * y * t * 2.) * 4.;
+    // float pct = plot(st * 100., y * 100., 1235.);
+
+
     // float t = time * 0.1;
     // float y = sin(st.y * (t + 3.) * 0.1);
     // y = y * sin(st.y * (t + 300.) * 0.1) * sin(st.x * (t + 300.) * 0.1);
@@ -294,16 +320,16 @@ void main() {
     // // pct = 1. - (pct * 0.5);
 
 
-    st = st * 1.035;
-    float t = time * 0.1;
-    float y = sin(st.y * (t + 3.) * 0.1);
-    y = y * sin(st.y * (t + 300.) * 0.1) * sin(st.x * (t + 300.) * 0.1);
-    st.y = tan((st.x * y * sin(y * 1.) * 0.075) * t * 1000.) * 4.;
-    // st.y = st.y * y * 20. * sin(t * (y * 20.) * 0.1);
-    // float pct = plot(st, y * st.y);
-    float pct = plot(st * (abs(tan(time * 0.05)) * 50.), y * 10., 135.);
-    // pct = pct + (t * sin(st.x * (t + 300.) * 0.1) * 0.0125);
-    // pct = 1. - (pct * 0.5);
+    // st = st * 1.035;
+    // float t = time * 0.1;
+    // float y = sin(st.y * (t + 3.) * 0.1);
+    // y = y * sin(st.y * (t + 300.) * 0.1) * sin(st.x * (t + 300.) * 0.1);
+    // st.y = tan((st.x * y * sin(y * 1.) * 0.075) * t * 1000.) * 4.;
+    // // st.y = st.y * y * 20. * sin(t * (y * 20.) * 0.1);
+    // // float pct = plot(st, y * st.y);
+    // float pct = plot(st * (abs(tan(time * 0.05)) * 50.), y * 10., 135.);
+    // // pct = pct + (t * sin(st.x * (t + 300.) * 0.1) * 0.0125);
+    // // pct = 1. - (pct * 0.5);
 
 
 
@@ -471,5 +497,6 @@ void main() {
     col = col + pct;
 float rando = rand(vec2(uv.x, uv.y));
     // Output to screen
+    // gl_FragColor = vec4(col - (rando * 0.1), 1.0);
     gl_FragColor = vec4(col - (rando * 0.1), 1.0);
 }
