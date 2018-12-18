@@ -1,4 +1,8 @@
 let looping = true;
+let socket, cnvs, ctx, canvasDOM;
+let fileName = "./frames/sketch";
+
+
 
 // a shader variable
 let texcoordShader;
@@ -9,9 +13,14 @@ function preload() {
 }
 
 function setup() {
+    socket = io.connect('http://localhost:8080');
     // shaders require WEBGL mode to work
     pixelDensity(1);
-    createCanvas(windowWidth, windowHeight, WEBGL);
+    // createCanvas(windowWidth, windowHeight, WEBGL);
+    // cnvs = createCanvas(windowWidth, windowHeight, WEBGL);
+    cnvs = createCanvas(windowHeight, windowHeight, WEBGL);
+    ctx = cnvs.drawingContext;
+    canvasDOM = document.getElementById('defaultCanvas0');
     frameRate(20);
     noStroke();
     // noLoop();
@@ -41,6 +50,9 @@ function keyPressed() {
     }
     if (key == 'r' || key == 'R') {
         window.location.reload();
+    }
+    if (key == 'p' || key == 'P') {
+        frameExport();
     }
     if (key == 'm' || key == 'M') {
         redraw();
