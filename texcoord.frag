@@ -12,8 +12,8 @@ float plot(vec2 s, float p) {
 }
 
 float circ(float speed, float size, float vx, float vy, float dist) {
-  float x = cos(time * speed) * dist * 0.012 - 0.425;
-  float y = sin(time * speed) * dist * 0.012 - 0.25;
+  float x = cos((time + 0.0) * speed * 0.01) * dist * 0.012 - 0.4125;
+  float y = sin((time + 0.0) * speed * 0.01) * dist * 0.012 - 0.225;
   vec2 v = vec2(vx + x, vy + y);
   float d = 1.0 / length(v * size);
   return d;
