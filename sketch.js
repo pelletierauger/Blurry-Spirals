@@ -1,7 +1,7 @@
 let looping = true;
 let socket, cnvs, ctx, canvasDOM;
 let fileName = "/Volumes/Volumina/frames/phase-2/blurry-spirals/blurry-spirals";
-let maxFrames = 700;
+let maxFrames = 540;
 
 // a shader variable
 let texcoordShader;
@@ -21,7 +21,7 @@ function setup() {
     cnvs = createCanvas(2560 * 0.5, 1440 * 0.5, WEBGL);
     ctx = cnvs.drawingContext;
     canvasDOM = document.getElementById('defaultCanvas0');
-    frameRate(20);
+    frameRate(1);
     noStroke();
     // noLoop();
 }
@@ -32,6 +32,9 @@ function draw() {
     texcoordShader.setUniform('time', frameCount);
     // rect gives us some geometry on the screen
     rect(0, 0, width, height);
+    if (exporting && frameCount < maxFrames) {
+        frameExport();
+    }
 }
 
 // function windowResized() {

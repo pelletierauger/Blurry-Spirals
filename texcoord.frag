@@ -12,8 +12,16 @@ float plot(vec2 s, float p) {
 }
 
 float circ(float speed, float size, float vx, float vy, float dist) {
-  float x = cos((time + 0.0) * speed * 0.01) * dist * 0.012 - 0.4125;
-  float y = sin((time + 0.0) * speed * 0.01) * dist * 0.012 - 0.225;
+  // float x = cos(time * speed) * dist * 0.012 - 0.425;
+  // float y = sin(time * speed) * dist * 0.012 - 0.25;
+  float itime = (time * 0.1 + 1e4 + 340.);
+
+  float x = cos(itime * speed) * dist * (sin(itime * 0.01)) * 0.12 - 0.405;
+  float y = sin(itime * speed) * dist * (sin(itime * 0.01)) * 0.12 - 0.225;
+
+
+  // float x = cos(time * speed) * dist * abs(sin(time * 0.01) * 1.0) - 0.425;
+  // float y = sin(time * speed) * dist * abs(sin(time * 0.01) * 1.0) - 0.25;
   vec2 v = vec2(vx + x, vy + y);
   float d = 1.0 / length(v * size);
   return d;
@@ -39,13 +47,24 @@ void main() {
       // Classic
       // float e = circ(0.0025 * s, 10000.0 * (4.0 / s * 0.05), uv.x, uv.y, 1.0 - (s * 0.25));
       // Spidery 2
-      float e = circ(0.025 * s, 10.0 * (4.0 * s * 0.05), uv.x, uv.y, 1.0 - (s * 0.25));
+      float e = circ(0.00125 * s, 20.0 - (s * -0.0115), uv.x, uv.y, 1.0 - (s * 0.25));
       c = c + e;
     }
     float rando = rand(vec2(uv.x, uv.y));
     // float c = 0.0;
     // gl_FragColor = vec4(1.0 - c * 0.5, 1.0 - c * 0.05, 0.5 - c, 1.0);
-    gl_FragColor = vec4(vec3(1.0 - c * 0.05 + (rando * 0.1)), 1.0);
+    // gl_FragColor = vec4(vec3(1.0 - c * 0.05 + (rando * 0.1)), 1.0);
+
+    // float pix = 1.0 - c * 0.05 + (rando * 0.1);
+    // float pix2 = 1.0 - c * 0.025 + (rando * 0.1);
+    // gl_FragColor = vec4(pix, 0.25 - pix2, 0.75 - pix * 0.5, 1.0);
+
+    // warm blue, purple and cyan
+    float pix = 1.0 - c * 0.05 + (rando * 0.1);
+    float pix2 = 1.0 - c * 0.045 + (rando * 0.1);
+    gl_FragColor = vec4(pix, 0.25 - pix2, 0.75 - pix * 0.5, 1.0);
+    // gl_FragColor = vec4(0.475 - pix * 0.125, 0.125 - pix2, pix2 - 0.5, 1.0);
+
     // gl_FragColor = vec4(vec3(d) + vec3(d2), 1.0);
 
 }
